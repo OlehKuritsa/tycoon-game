@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Startup Tycoon</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="src/styles.css" />
+</head>
+<body class="noise text-slate-100 antialiased select-none">
+<div class="min-h-dvh flex">
+
+  <!-- ── Sidebar ── -->
+  <aside class="glass w-[72px] hover:w-[200px] transition-all duration-300 ease-out group overflow-hidden shrink-0">
+    <div class="h-dvh flex flex-col items-center py-5 gap-2">
+      <!-- Logo -->
+      <div class="w-10 h-10 rounded-2xl glass glow-blue flex items-center justify-center font-bold text-sm shrink-0">ST</div>
+
+      <nav class="mt-4 flex flex-col gap-1.5 w-full px-2.5">
+        <a data-nav="dashboard" href="#"
+          class="glass rounded-2xl px-2.5 py-2.5 flex items-center gap-3 hover:glow-blue transition cursor-pointer">
+          <span class="w-9 h-9 rounded-xl glass flex items-center justify-center shrink-0 text-base">⌁</span>
+          <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-sm whitespace-nowrap">Dashboard</span>
+        </a>
+        <a data-nav="projects" href="#"
+          class="glass rounded-2xl px-2.5 py-2.5 flex items-center gap-3 hover:glow-blue transition cursor-pointer">
+          <span class="w-9 h-9 rounded-xl glass flex items-center justify-center shrink-0 text-base">⟡</span>
+          <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-sm whitespace-nowrap">Projects</span>
+        </a>
+        <a data-nav="employees" href="#"
+          class="glass rounded-2xl px-2.5 py-2.5 flex items-center gap-3 hover:glow-blue transition cursor-pointer">
+          <span class="w-9 h-9 rounded-xl glass flex items-center justify-center shrink-0 text-base">◈</span>
+          <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-sm whitespace-nowrap">Employees</span>
+        </a>
+        <a data-nav="office" href="#"
+          class="glass rounded-2xl px-2.5 py-2.5 flex items-center gap-3 hover:glow-blue transition cursor-pointer">
+          <span class="w-9 h-9 rounded-xl glass flex items-center justify-center shrink-0 text-base">▣</span>
+          <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-sm whitespace-nowrap">Office</span>
+        </a>
+        <a data-nav="analytics" href="#"
+          class="glass rounded-2xl px-2.5 py-2.5 flex items-center gap-3 hover:glow-blue transition cursor-pointer">
+          <span class="w-9 h-9 rounded-xl glass flex items-center justify-center shrink-0 text-base">◎</span>
+          <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-sm whitespace-nowrap">Analytics</span>
+        </a>
+        <a data-nav="research" href="#"
+          class="glass rounded-2xl px-2.5 py-2.5 flex items-center gap-3 hover:glow-blue transition cursor-pointer">
+          <span class="w-9 h-9 rounded-xl glass flex items-center justify-center shrink-0 text-base">⚛</span>
+          <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-sm whitespace-nowrap">Research</span>
+        </a>
+        <a data-nav="tutorial" href="#"
+          class="glass rounded-2xl px-2.5 py-2.5 flex items-center gap-3 hover:glow-blue transition cursor-pointer">
+          <span class="w-9 h-9 rounded-xl glass flex items-center justify-center shrink-0 text-base">?</span>
+          <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-sm whitespace-nowrap">Guide</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- ── Main ── -->
+  <main class="flex-1 flex flex-col min-h-dvh overflow-hidden">
+
+    <!-- Status Bar -->
+    <header class="sticky top-0 z-20">
+      <div class="mx-4 mt-4 glass rounded-2xl px-5 py-3 flex items-center justify-between gap-3">
+        <!-- Stats -->
+        <div class="flex items-center gap-2 flex-wrap text-xs">
+          <span class="glass rounded-xl px-3 py-1.5">
+            <span class="text-slate-400">Balance </span><b id="sb-balance" class="text-emerald-300">$5,000</b>
+          </span>
+          <span class="glass rounded-xl px-3 py-1.5">
+            <span class="text-slate-400">Rep </span><b id="sb-reputation" class="text-white">10</b>
+          </span>
+          <span class="glass rounded-xl px-3 py-1.5 hidden sm:inline-flex">
+            <span class="text-slate-400">Runway </span><b id="sb-runway" class="text-white">—</b>
+          </span>
+          <span class="glass rounded-xl px-3 py-1.5">
+            <b id="sb-day" class="text-slate-300">Day 1</b>
+          </span>
+          <span class="glass rounded-xl px-3 py-1.5">
+            <b id="sb-level" class="text-blue-300">Lv 1</b>
+          </span>
+        </div>
+
+        <!-- Speed controls -->
+        <div class="flex items-center gap-1.5 shrink-0">
+          <button id="btn-pause" class="glass rounded-xl w-8 h-8 text-sm hover:glow-orange transition">⏸</button>
+          <button data-speed="1"  class="glass rounded-xl px-3 h-8 text-xs text-slate-400 hover:text-white transition">1×</button>
+          <button data-speed="2"  class="glass rounded-xl px-3 h-8 text-xs text-slate-400 hover:text-white transition">2×</button>
+          <button data-speed="4"  class="glass rounded-xl px-3 h-8 text-xs text-slate-400 hover:text-white transition">4×</button>
+        </div>
+      </div>
+    </header>
+
+    <!-- View Content -->
+    <div id="main-content" class="flex-1 overflow-y-auto px-4 py-6"></div>
+
+  </main>
+</div>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
