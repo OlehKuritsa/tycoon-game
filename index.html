@@ -3,61 +3,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Startup Tycoon</title>
+  <title>IT-Company Tycoon</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="src/styles.css" />
 </head>
 <body class="noise text-slate-100 antialiased select-none">
-<div class="min-h-dvh flex">
+<div class="h-dvh flex overflow-hidden">
 
   <!-- ── Sidebar ── -->
   <aside class="glass w-[72px] hover:w-[200px] transition-all duration-300 ease-out group overflow-hidden shrink-0">
     <div class="h-dvh flex flex-col items-center py-5 gap-2">
-      <!-- Logo -->
-      <div class="w-10 h-10 rounded-2xl glass glow-blue flex items-center justify-center font-bold text-sm shrink-0">ST</div>
+      <div class="sidebar-icon shrink-0" aria-label="Sidebar icon">
+        <span class="sidebar-icon__mono">ITco</span>
+      </div>
 
       <nav class="mt-4 flex flex-col gap-1.5 w-full px-2.5">
         <a data-nav="dashboard" href="#"
-          class="glass rounded-2xl px-2.5 py-2.5 flex items-center gap-3 hover:glow-blue transition cursor-pointer">
+          class="glass rounded-2xl py-2.5 flex items-center justify-center group-hover:justify-start group-hover:px-3 gap-3 hover:glow-blue transition-all duration-300 cursor-pointer">
           <span class="w-9 h-9 rounded-xl glass flex items-center justify-center shrink-0 text-base">⌁</span>
-          <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-sm whitespace-nowrap">Dashboard</span>
+          <span class="hidden group-hover:block text-sm whitespace-nowrap">Dashboard</span>
         </a>
         <a data-nav="projects" href="#"
-          class="glass rounded-2xl px-2.5 py-2.5 flex items-center gap-3 hover:glow-blue transition cursor-pointer">
+          class="glass rounded-2xl py-2.5 flex items-center justify-center group-hover:justify-start group-hover:px-3 gap-3 hover:glow-blue transition-all duration-300 cursor-pointer">
           <span class="w-9 h-9 rounded-xl glass flex items-center justify-center shrink-0 text-base">⟡</span>
-          <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-sm whitespace-nowrap">Projects</span>
+          <span class="hidden group-hover:block text-sm whitespace-nowrap">Projects</span>
         </a>
         <a data-nav="employees" href="#"
-          class="glass rounded-2xl px-2.5 py-2.5 flex items-center gap-3 hover:glow-blue transition cursor-pointer">
+          class="glass rounded-2xl py-2.5 flex items-center justify-center group-hover:justify-start group-hover:px-3 gap-3 hover:glow-blue transition-all duration-300 cursor-pointer">
           <span class="w-9 h-9 rounded-xl glass flex items-center justify-center shrink-0 text-base">◈</span>
-          <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-sm whitespace-nowrap">Employees</span>
+          <span class="hidden group-hover:block text-sm whitespace-nowrap">Employees</span>
         </a>
         <a data-nav="office" href="#"
-          class="glass rounded-2xl px-2.5 py-2.5 flex items-center gap-3 hover:glow-blue transition cursor-pointer">
+          class="glass rounded-2xl py-2.5 flex items-center justify-center group-hover:justify-start group-hover:px-3 gap-3 hover:glow-blue transition-all duration-300 cursor-pointer">
           <span class="w-9 h-9 rounded-xl glass flex items-center justify-center shrink-0 text-base">▣</span>
-          <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-sm whitespace-nowrap">Office</span>
+          <span class="hidden group-hover:block text-sm whitespace-nowrap">Office</span>
         </a>
         <a data-nav="analytics" href="#"
-          class="glass rounded-2xl px-2.5 py-2.5 flex items-center gap-3 hover:glow-blue transition cursor-pointer">
+          class="glass rounded-2xl py-2.5 flex items-center justify-center group-hover:justify-start group-hover:px-3 gap-3 hover:glow-blue transition-all duration-300 cursor-pointer">
           <span class="w-9 h-9 rounded-xl glass flex items-center justify-center shrink-0 text-base">◎</span>
-          <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-sm whitespace-nowrap">Analytics</span>
+          <span class="hidden group-hover:block text-sm whitespace-nowrap">Analytics</span>
         </a>
         <a data-nav="research" href="#"
-          class="glass rounded-2xl px-2.5 py-2.5 flex items-center gap-3 hover:glow-blue transition cursor-pointer">
+          class="glass rounded-2xl py-2.5 flex items-center justify-center group-hover:justify-start group-hover:px-3 gap-3 hover:glow-blue transition-all duration-300 cursor-pointer">
           <span class="w-9 h-9 rounded-xl glass flex items-center justify-center shrink-0 text-base">⚛</span>
-          <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-sm whitespace-nowrap">Research</span>
+          <span class="hidden group-hover:block text-sm whitespace-nowrap">Research</span>
         </a>
         <a data-nav="tutorial" href="#"
-          class="glass rounded-2xl px-2.5 py-2.5 flex items-center gap-3 hover:glow-blue transition cursor-pointer">
-          <span class="w-9 h-9 rounded-xl glass flex items-center justify-center shrink-0 text-base">?</span>
-          <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-sm whitespace-nowrap">Guide</span>
+          class="glass rounded-2xl py-2.5 flex items-center justify-center group-hover:justify-start group-hover:px-3 gap-3 hover:glow-blue transition-all duration-300 cursor-pointer">
+          <span class="w-9 h-9 rounded-xl glass flex items-center justify-center shrink-0 text-base font-semibold text-slate-300">?</span>
+          <span class="hidden group-hover:block text-sm whitespace-nowrap">Guide</span>
         </a>
       </nav>
     </div>
   </aside>
 
   <!-- ── Main ── -->
-  <main class="flex-1 flex flex-col min-h-dvh overflow-hidden">
+  <main class="flex-1 flex flex-col overflow-hidden">
 
     <!-- Status Bar -->
     <header class="sticky top-0 z-20">
@@ -78,6 +79,11 @@
           </span>
           <span class="glass rounded-xl px-3 py-1.5">
             <b id="sb-level" class="text-blue-300">Lv 1</b>
+          </span>
+          <!-- Tutorial pause badge -->
+          <span id="tutorial-pause-badge"
+            class="hidden glass border border-amber-500/30 rounded-xl px-3 py-1.5 text-amber-300 flex items-center gap-1.5">
+            <span>⏸</span><span>Tutorial</span>
           </span>
         </div>
 

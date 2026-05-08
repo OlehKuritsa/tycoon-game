@@ -1,5 +1,6 @@
 import { state } from '../engine/GameState.js';
 import { EventBus } from '../engine/EventBus.js';
+import { CATEGORY_META } from '../data/projects.js';
 
 const RENT = [0, 500, 1800, 6000, 20000, 70000];
 
@@ -47,6 +48,36 @@ export function processMonthEnd() {
 
   if (state.balance < 0) {
     EventBus.emit('notification', { type: 'error', message: '⚠️ Negative balance! Pay your bills!' });
+  }
+}
+
+const TREND_MIN = 0.5;
+const TREND_MAX = 1.6;
+
+export function shiftMarketTrends() {
+  const categories = Object.keys(state.marketTrends);
+  const count = 2 + Math.floor(Math.random() * 3); // 2–4 categories shift
+  const shuffled = [...categories].sort(() => Math.random() - 0.5);
+  const toShift = shuffled.slice(0, count);
+
+  const ups = [], downs = [];
+
+  toShift.forEach(cat => {
+    const cur = state.marketTrends[cat];
+    // Mean-reversion bias: hot markets cool, cold markets recover
+    const bias = cur > 1.15 ? -0.12 : cur < 0.85 ? 0.12 : 0;
+    const delta = +((Math.random() - 0.5) * 0.32 + bias).toFixed(2);
+    const next = +Math.max(TREND_MIN, Math.min(TREND_MAX, cur + delta)).toFixed(2);
+    if (next > cur) ups.push(CATEGORY_META[cat]?.label ?? cat);
+    else if (next < cur) downs.push(CATEGORY_META[cat]?.label ?? cat);
+    state.marketTrends[cat] = next;
+  });
+
+  const parts = [];
+  if (ups.length)   parts.push(`▲ ${ups.join(', ')}`);
+  if (downs.length) parts.push(`▼ ${downs.join(', ')}`);
+  if (parts.length) {
+    EventBus.emit('notification', { type: 'info', message: `📊 Market shift: ${parts.join('  ')}` });
   }
 }
 

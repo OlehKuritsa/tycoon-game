@@ -51,5 +51,6 @@ export const state = {
 
   speed: 1,
   isPaused: false,
+  gameStarted: false,
   currentView: 'dashboard',
 };

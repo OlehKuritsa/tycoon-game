@@ -7,6 +7,8 @@
 
 * { box-sizing: border-box; }
 
+html, body { height: 100%; overflow: hidden; }
+
 body {
   background:
     radial-gradient(1200px 800px at 18% 8%,  rgba(59,130,246,.16), transparent 55%),
@@ -53,3 +55,230 @@ body {
 
 /* Table row hover */
 tr:hover td { background: rgba(255,255,255,.02); }
+
+/* ── Start Menu ────────────────────────────────────────── */
+
+/* Dark overlay base */
+#start-menu-overlay {
+  background: rgba(4, 7, 13, 0.74);
+}
+
+/* Color-wash: container + 5 fixed-gradient layers that crossfade via opacity.
+   Browser animates opacity smoothly (unlike background-gradient which jumps). */
+.start-color-wash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.clayer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  /* Period 15s, stagger 3s between layers.
+     Keyframe: fade-in 1.5s → hold 3s → fade-out 1.5s → wait 9s.
+     At any moment two adjacent layers cross-dissolve. */
+  animation: clayer-fade 15s ease-in-out infinite;
+}
+
+@keyframes clayer-fade {
+  0%    { opacity: 0; }
+  10%   { opacity: 1; }   /* 1.5s — fully in  */
+  40%   { opacity: 1; }   /* 6s   — still visible */
+  50%   { opacity: 0; }   /* 7.5s — fully out */
+  100%  { opacity: 0; }
+}
+
+/* Each layer: unique color spotlight, staggered by 3s */
+.clayer-1 {
+  background: radial-gradient(ellipse 130% 100% at 28% 38%, rgba(59,130,246,.42),  transparent 62%);
+  animation-delay: 0s;
+}
+.clayer-2 {
+  background: radial-gradient(ellipse 130% 100% at 72% 22%, rgba(139,92,246,.38),  transparent 62%);
+  animation-delay: -3s;
+}
+.clayer-3 {
+  background: radial-gradient(ellipse 130% 100% at 78% 72%, rgba(255,122,61,.38),  transparent 62%);
+  animation-delay: -6s;
+}
+.clayer-4 {
+  background: radial-gradient(ellipse 130% 100% at 18% 72%, rgba(16,185,129,.34),  transparent 62%);
+  animation-delay: -9s;
+}
+.clayer-5 {
+  background: radial-gradient(ellipse 130% 100% at 52% 12%, rgba(236,72,153,.32),  transparent 62%);
+  animation-delay: -12s;
+}
+
+/* ── Sidebar icon ──────────────────────────────────────── */
+.sidebar-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  background:
+    radial-gradient(18px 18px at 30% 25%, rgba(255,61,255,.18), transparent 60%),
+    radial-gradient(20px 20px at 70% 80%, rgba(0,255,133,.14), transparent 62%),
+    rgba(8,18,44,.55);
+  border: 2px solid rgba(0,229,255,.90);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.06),
+    0 0 10px rgba(0,229,255,.28),
+    0 0 18px rgba(255,61,255,.14);
+}
+
+.sidebar-icon__mono {
+  font-weight: 900;
+  font-size: 10px;
+  letter-spacing: .04em;
+  color: #eaf2ff;
+  text-shadow:
+    0 0 10px rgba(0,229,255,.32),
+    0 0 14px rgba(255,61,255,.16);
+  transform: translateX(.04em);
+  user-select: none;
+}
+
+/* ── Start-menu logo ───────────────────────────────────── */
+:root {
+  --neonC: #00e5ff;
+  --neonM: #ff3dff;
+  --neonG: #00ff85;
+  --ink:   #eaf2ff;
+}
+
+.menu-logo {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 24px 32px;
+  width: min(680px, 90vw);
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  box-shadow:
+    0 18px 60px rgba(0,0,0,.55),
+    inset 0 1px 0 rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.09);
+}
+
+.menu-logo__mark {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  flex: 0 0 120px;
+}
+
+.menu-logo__chip {
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  border: 3.5px solid rgba(0,229,255,.9);
+  background:
+    radial-gradient(100px 100px at 30% 20%, rgba(255,61,255,.12), transparent 60%),
+    radial-gradient(110px 110px at 70% 80%, rgba(0,255,133,.09), transparent 62%),
+    rgba(8,18,44,.50);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.06),
+    0 0 24px rgba(0,229,255,.32),
+    0 0 44px rgba(255,61,255,.14);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  animation: chip-pulse 3s ease-in-out infinite;
+}
+
+@keyframes chip-pulse {
+  0%, 100% { box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), 0 0 24px rgba(0,229,255,.32), 0 0 44px rgba(255,61,255,.14); }
+  50%       { box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), 0 0 42px rgba(0,229,255,.55), 0 0 70px rgba(255,61,255,.28); }
+}
+
+.menu-logo__mono {
+  font-weight: 800;
+  letter-spacing: .04em;
+  font-size: 26px;
+  color: var(--ink);
+  text-shadow:
+    0 0 14px rgba(0,229,255,.40),
+    0 0 22px rgba(255,61,255,.20);
+}
+
+.pin {
+  position: absolute;
+  width: 15px;
+  height: 5px;
+  border-radius: 5px;
+  background: rgba(234,242,255,.20);
+  box-shadow: 0 0 8px rgba(0,229,255,.18);
+}
+.p1 { left: -8px;  top: 22px;  }
+.p2 { left: -8px;  top: 44px;  }
+.p3 { left: -8px;  top: 66px;  }
+.p4 { left: -8px;  top: 88px;  }
+.p5 { right: -8px; top: 22px;  }
+.p6 { right: -8px; top: 44px;  }
+.p7 { right: -8px; top: 66px;  }
+.p8 { right: -8px; top: 88px;  }
+
+.menu-logo__glow {
+  position: absolute;
+  inset: -16px;
+  border-radius: 34px;
+  background:
+    radial-gradient(60% 60% at 35% 30%, rgba(0,229,255,.38), transparent 60%),
+    radial-gradient(55% 55% at 70% 75%, rgba(255,61,255,.26), transparent 62%);
+  filter: blur(10px);
+  z-index: -1;
+  animation: glow-shift 3s ease-in-out infinite;
+}
+
+@keyframes glow-shift {
+  0%, 100% { opacity: .85; transform: scale(1);    }
+  50%       { opacity: 1;   transform: scale(1.06); }
+}
+
+.menu-logo__type {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.menu-logo__title {
+  font-weight: 900;
+  letter-spacing: .10em;
+  font-size: clamp(32px, 4vw, 52px);
+  color: var(--ink);
+  line-height: 1.05;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 20px rgba(0,229,255,.20),
+    0 0 36px rgba(255,61,255,.12);
+  white-space: nowrap;
+}
+
+.menu-logo__dot {
+  color: var(--neonC);
+  text-shadow: 0 0 16px rgba(0,229,255,.65);
+}
+
+.menu-logo__subtitle {
+  font-size: 13px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(234,242,255,.60);
+}
+
+@media (max-width: 560px) {
+  .menu-logo       { flex-direction: column; align-items: flex-start; padding: 20px; }
+  .menu-logo__title{ white-space: normal; }
+}
+
+/* Start button extra glow on hover */
+@keyframes btn-glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(255,122,61,.2), 0 16px 48px rgba(255,122,61,.18); }
+  50%       { box-shadow: 0 0 0 1px rgba(255,122,61,.45), 0 16px 64px rgba(255,122,61,.35); }
+}
+.start-btn-glow { animation: btn-glow-pulse 2.4s ease-in-out infinite; }

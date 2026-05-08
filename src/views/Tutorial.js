@@ -1,3 +1,6 @@
+import { state } from '../engine/GameState.js';
+import { EventBus } from '../engine/EventBus.js';
+
 // Tutorial state persisted in-memory (survives view switches)
 const _read = new Set();
 
@@ -268,8 +271,26 @@ const CHAPTERS = [
 ];
 
 export function renderTutorial(el) {
+  const _banner = !state.gameStarted
+    ? `<div class="glass border border-orange-500/30 rounded-3xl px-6 py-4 flex items-center justify-between gap-4">
+        <div class="text-sm text-slate-300 leading-relaxed">
+          <span class="text-orange-300 font-semibold">Гра ще не запущена.</span>
+          Читай на здоров'я — час не йде. Натисни кнопку коли будеш готовий.
+        </div>
+        <button id="tut-start-btn"
+          class="glass glow-orange rounded-2xl px-5 py-2.5 text-sm font-semibold shrink-0 hover:scale-[1.03] transition">
+          ▶ Start Game
+        </button>
+      </div>`
+    : `<div class="glass border border-amber-500/25 rounded-3xl px-5 py-3 flex items-center gap-3">
+        <span class="text-amber-300 text-lg">⏸</span>
+        <span class="text-sm text-amber-200">Ігровий час <b>призупинено</b> поки ти читаєш. Повернись на будь-яку іншу вкладку — і час знову піде.</span>
+      </div>`;
+
   el.innerHTML = `
     <div class="max-w-4xl mx-auto space-y-6">
+      ${_banner}
+
       <!-- Header -->
       <div class="glass glow-blue rounded-3xl p-6 flex items-center justify-between">
         <div>
@@ -340,10 +361,14 @@ export function renderTutorial(el) {
   `;
 
   el.addEventListener('click', e => {
+    // Start game button (shown before game launched)
+    if (e.target.closest('#tut-start-btn')) {
+      EventBus.emit('request-start-game', {});
+      return;
+    }
     const btn = e.target.closest('[data-chapter]');
     if (!btn) return;
-    const id = btn.dataset.chapter;
-    _toggleChapter(id, el);
+    _toggleChapter(btn.dataset.chapter, el);
   });
 }
 
