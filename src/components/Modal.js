@@ -1,4 +1,4 @@
-export function showModal({ title, body, actions = [] }) {
+export function showModal({ title, body, actions = [], onClose }) {
   closeModal();
 
   const overlay = document.createElement('div');
@@ -7,7 +7,7 @@ export function showModal({ title, body, actions = [] }) {
   overlay.style.cssText = 'background:rgba(0,0,0,.75);backdrop-filter:blur(6px)';
 
   overlay.innerHTML = `
-    <div class="glass glow-blue rounded-3xl p-7 max-w-lg w-full animate-fade-in">
+    <div class="glass glow-blue rounded-3xl p-7 max-w-lg w-full animate-fade-in overflow-y-auto max-h-[90dvh]">
       <div class="flex items-start justify-between mb-4">
         <h3 class="font-semibold text-lg leading-tight">${title}</h3>
         <button id="modal-x" class="glass rounded-xl px-3 py-1 text-slate-400 hover:text-white text-sm ml-4 shrink-0">✕</button>
@@ -23,8 +23,9 @@ export function showModal({ title, body, actions = [] }) {
     </div>
   `;
 
-  overlay.querySelector('#modal-x').addEventListener('click', closeModal);
-  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  const _dismiss = () => { if (onClose) onClose(); closeModal(); };
+  overlay.querySelector('#modal-x').addEventListener('click', _dismiss);
+  overlay.addEventListener('click', e => { if (e.target === overlay) _dismiss(); });
 
   actions.forEach((a, i) => {
     overlay.querySelector(`[data-idx="${i}"]`).addEventListener('click', () => {

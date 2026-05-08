@@ -272,13 +272,13 @@ const CHAPTERS = [
 
 export function renderTutorial(el) {
   const _banner = !state.gameStarted
-    ? `<div class="glass border border-orange-500/30 rounded-3xl px-6 py-4 flex items-center justify-between gap-4">
+    ? `<div class="glass border border-orange-500/30 rounded-3xl px-6 py-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div class="text-sm text-slate-300 leading-relaxed">
           <span class="text-orange-300 font-semibold">Гра ще не запущена.</span>
           Читай на здоров'я — час не йде. Натисни кнопку коли будеш готовий.
         </div>
         <button id="tut-start-btn"
-          class="glass glow-orange rounded-2xl px-5 py-2.5 text-sm font-semibold shrink-0 hover:scale-[1.03] transition">
+          class="glass glow-orange rounded-2xl px-5 py-3 text-sm font-semibold sm:shrink-0 hover:scale-[1.03] transition">
           ▶ Start Game
         </button>
       </div>`
@@ -339,6 +339,7 @@ export function renderTutorial(el) {
                             margin-top:.75rem; line-height:1.6; }
       .tut-body .tip.danger { background:rgba(239,68,68,.08); border-color:rgba(239,68,68,.2); color:#fca5a5; }
       .tut-body .grid-2   { display:grid; grid-template-columns:1fr 1fr; gap:.5rem; margin:.5rem 0; }
+      @media (max-width: 480px) { .tut-body .grid-2 { grid-template-columns:1fr; } }
       .tut-body .diff-card,
       .tut-body .rarity-card { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
                             border-radius:.75rem; padding:.5rem .75rem; font-size:.78rem; }

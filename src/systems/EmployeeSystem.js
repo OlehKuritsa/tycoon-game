@@ -79,6 +79,7 @@ export function tickEmployees() {
     // Office stress reduction
     stressDelta *= (1 - state.mods.stressReduction);
 
+    const prevStress = emp.stress;
     emp.stress = Math.min(100, Math.max(0, emp.stress + stressDelta));
 
     // Energy
@@ -95,7 +96,8 @@ export function tickEmployees() {
         fireEmployee(emp.id);
         state.reputation = Math.max(0, state.reputation - 5);
         EventBus.emit('notification', { type: 'error', message: `${emp.name} quit from burnout!` });
-      } else if (!isLoyal) {
+      } else if (!isLoyal && prevStress < 95) {
+        // warn only once when crossing the threshold, not every day
         EventBus.emit('notification', { type: 'warning', message: `⚠️ ${emp.name} is burning out!` });
       }
     }

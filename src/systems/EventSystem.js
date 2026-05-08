@@ -15,6 +15,13 @@ export function checkRandomEvents() {
     if (ev.minLevel && state.company.level < ev.minLevel) continue;
     if (ev.minStress && avgStress < ev.minStress) continue;
 
+    // Cybersecurity Suite blocks cyber attacks proportionally to attackProtection
+    if (ev.id === 'cyber-attack' && state.mods.attackProtection > 0
+        && Math.random() < state.mods.attackProtection) {
+      EventBus.emit('notification', { type: 'success', message: '🛡️ Cyber attack blocked by Cybersecurity Suite!' });
+      continue;
+    }
+
     state.pendingEvent = ev;
     EventBus.emit('game-event', { event: ev });
     break;

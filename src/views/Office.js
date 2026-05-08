@@ -20,7 +20,7 @@ export function renderOffice(el) {
     <div class="max-w-5xl mx-auto space-y-8">
       <!-- Office Status -->
       <div class="glass glow-blue rounded-3xl p-6">
-        <div class="flex items-center justify-between">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <div class="text-xs text-slate-400 uppercase tracking-widest">Current Office</div>
             <h2 class="text-2xl font-semibold mt-1">Level ${state.officeLevel} — ${officeData.name}</h2>

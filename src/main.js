@@ -59,9 +59,11 @@ function navigate(view) {
   });
 
   const content = document.getElementById('main-content');
+  const savedScroll = view === prev ? content.scrollTop : 0;
   const fresh = content.cloneNode(false);
   content.parentNode.replaceChild(fresh, content);
   VIEWS[view](fresh);
+  if (savedScroll > 0) fresh.scrollTop = savedScroll;
 }
 
 // ─── Start Game ──────────────────────────────────────────────────────────────
@@ -138,6 +140,7 @@ function registerEvents() {
     showModal({
       title: event.title,
       body: event.desc,
+      onClose: () => { state.pendingEvent = null; },
       actions: event.choices.map((c, i) => ({
         label: c.label,
         primary: i === 0,
@@ -192,7 +195,7 @@ function init() {
   // Build and inject the start menu overlay (sits above everything)
   const overlay = document.createElement('div');
   overlay.id = 'start-menu-overlay';
-  overlay.className = 'fixed inset-0 z-[100] flex items-center justify-center';
+  overlay.className = 'fixed inset-0 z-[100] flex items-center justify-center py-8';
   document.body.appendChild(overlay);
 
   renderStartMenu(overlay, {

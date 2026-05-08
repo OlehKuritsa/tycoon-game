@@ -282,3 +282,46 @@ tr:hover td { background: rgba(255,255,255,.02); }
   50%       { box-shadow: 0 0 0 1px rgba(255,122,61,.45), 0 16px 64px rgba(255,122,61,.35); }
 }
 .start-btn-glow { animation: btn-glow-pulse 2.4s ease-in-out infinite; }
+
+/* ── Mobile ────────────────────────────────────────────────── */
+
+/* Extra scroll room above the bottom nav */
+@media (max-width: 767px) {
+  #main-content { padding-bottom: 84px !important; }
+}
+
+/* Bottom nav safe-area (iPhone notch) */
+#mobile-nav > div {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Active tab highlight */
+#mobile-nav .mob-tab.glow-blue {
+  background: rgba(59, 130, 246, .14);
+  box-shadow: none;
+}
+#mobile-nav .mob-tab.glow-blue span:first-child {
+  color: #93c5fd;
+  filter: drop-shadow(0 0 6px rgba(59, 130, 246, .75));
+}
+#mobile-nav .mob-tab.glow-blue span:last-child {
+  color: #93c5fd;
+}
+
+/* Tap feedback */
+#mobile-nav .mob-tab:active { background: rgba(255,255,255,.06); }
+
+/* Push toasts above mobile nav so they're never hidden under it */
+@media (max-width: 767px) {
+  #toast-wrap {
+    bottom: 80px !important;
+    right: 12px;
+    width: calc(100vw - 24px);
+  }
+}
+
+/* Start-menu overlay: scrollable on short screens */
+#start-menu-overlay { overflow-y: auto; }
+@media (max-height: 680px) {
+  #start-menu-overlay { align-items: flex-start; }
+}

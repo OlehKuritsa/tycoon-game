@@ -11,7 +11,7 @@
 <div class="h-dvh flex overflow-hidden">
 
   <!-- ── Sidebar ── -->
-  <aside class="glass w-[72px] hover:w-[200px] transition-all duration-300 ease-out group overflow-hidden shrink-0">
+  <aside class="glass hidden md:block w-[72px] hover:w-[200px] transition-all duration-300 ease-out group overflow-hidden shrink-0">
     <div class="h-dvh flex flex-col items-center py-5 gap-2">
       <div class="sidebar-icon shrink-0" aria-label="Sidebar icon">
         <span class="sidebar-icon__mono">ITco</span>
@@ -66,9 +66,9 @@
         <!-- Stats -->
         <div class="flex items-center gap-2 flex-wrap text-xs">
           <span class="glass rounded-xl px-3 py-1.5">
-            <span class="text-slate-400">Balance </span><b id="sb-balance" class="text-emerald-300">$5,000</b>
+            <span class="text-slate-400 hidden sm:inline">Balance </span><b id="sb-balance" class="text-emerald-300">$5,000</b>
           </span>
-          <span class="glass rounded-xl px-3 py-1.5">
+          <span class="glass rounded-xl px-3 py-1.5 hidden sm:inline-flex">
             <span class="text-slate-400">Rep </span><b id="sb-reputation" class="text-white">10</b>
           </span>
           <span class="glass rounded-xl px-3 py-1.5 hidden sm:inline-flex">
@@ -77,7 +77,7 @@
           <span class="glass rounded-xl px-3 py-1.5">
             <b id="sb-day" class="text-slate-300">Day 1</b>
           </span>
-          <span class="glass rounded-xl px-3 py-1.5">
+          <span class="glass rounded-xl px-3 py-1.5 hidden sm:inline-flex">
             <b id="sb-level" class="text-blue-300">Lv 1</b>
           </span>
           <!-- Tutorial pause badge -->
@@ -102,6 +102,40 @@
 
   </main>
 </div>
+
+<!-- ── Mobile Bottom Nav ── -->
+<nav id="mobile-nav" class="md:hidden fixed bottom-0 inset-x-0 z-30 glass border-t border-white/[.07]">
+  <div class="flex items-stretch justify-around">
+    <a data-nav="dashboard" href="#" class="mob-tab flex flex-col items-center justify-center gap-0.5 flex-1 py-2.5 px-1 rounded-xl transition-colors">
+      <span class="text-[18px] leading-none">⌁</span>
+      <span class="text-[9px] text-slate-400">Home</span>
+    </a>
+    <a data-nav="projects" href="#" class="mob-tab flex flex-col items-center justify-center gap-0.5 flex-1 py-2.5 px-1 rounded-xl transition-colors">
+      <span class="text-[18px] leading-none">⟡</span>
+      <span class="text-[9px] text-slate-400">Projects</span>
+    </a>
+    <a data-nav="employees" href="#" class="mob-tab flex flex-col items-center justify-center gap-0.5 flex-1 py-2.5 px-1 rounded-xl transition-colors">
+      <span class="text-[18px] leading-none">◈</span>
+      <span class="text-[9px] text-slate-400">Team</span>
+    </a>
+    <a data-nav="office" href="#" class="mob-tab flex flex-col items-center justify-center gap-0.5 flex-1 py-2.5 px-1 rounded-xl transition-colors">
+      <span class="text-[18px] leading-none">▣</span>
+      <span class="text-[9px] text-slate-400">Office</span>
+    </a>
+    <a data-nav="analytics" href="#" class="mob-tab flex flex-col items-center justify-center gap-0.5 flex-1 py-2.5 px-1 rounded-xl transition-colors">
+      <span class="text-[18px] leading-none">◎</span>
+      <span class="text-[9px] text-slate-400">Stats</span>
+    </a>
+    <a data-nav="research" href="#" class="mob-tab flex flex-col items-center justify-center gap-0.5 flex-1 py-2.5 px-1 rounded-xl transition-colors">
+      <span class="text-[18px] leading-none">⚛</span>
+      <span class="text-[9px] text-slate-400">R&D</span>
+    </a>
+    <a data-nav="tutorial" href="#" class="mob-tab flex flex-col items-center justify-center gap-0.5 flex-1 py-2.5 px-1 rounded-xl transition-colors">
+      <span class="text-[18px] leading-none text-slate-300 font-semibold">?</span>
+      <span class="text-[9px] text-slate-400">Guide</span>
+    </a>
+  </div>
+</nav>
 
 <script type="module" src="src/main.js"></script>
 </body>
